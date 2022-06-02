@@ -43,7 +43,9 @@ defmodule Backend.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:decimal, "~> 2.0"}
+      {:decimal, "~> 2.0"},
+      {:pbkdf2_elixir, "~> 2.0"},
+      {:guardian, "~> 2.0"}
     ]
   end
 
