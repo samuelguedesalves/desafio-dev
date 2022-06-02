@@ -7,6 +7,8 @@ defmodule BackendWeb.Router do
 
   scope "/api", BackendWeb do
     pipe_through :api
+
+    post "/user/create", UserController, :create
   end
 
   # Enables LiveDashboard only for development
