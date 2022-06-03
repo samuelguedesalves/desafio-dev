@@ -1,6 +1,5 @@
 defmodule Backend.User.Create do
-  alias Backend.User
-  alias Backend.Repo
+  alias Backend.{User, Repo}
 
   def call(attrs) do
     attrs
