@@ -3,26 +3,32 @@ defmodule Backend.Cnab do
 
   import Ecto.Changeset
 
+  alias Backend.User
+
   @fields [
-    :tipo,
-    :data,
-    :valor,
+    :type,
+    :date,
+    :amount,
     :cpf,
-    :cartao,
-    :hora,
-    :dono_loja,
-    :nome_loja
+    :card,
+    :hour,
+    :shop_owner,
+    :shop_name,
+    :user_id
   ]
 
   schema "cnab" do
-    field :tipo, :string
-    field :data, :date
-    field :valor, :integer
+    field :type, :string
+    field :date, :date
+    field :amount, :integer
     field :cpf, :string
-    field :cartao, :string
-    field :hora, :time
-    field :dono_loja, :string
-    field :nome_loja, :string
+    field :card, :string
+    field :hour, :time
+    field :shop_owner, :string
+    field :shop_name, :string
+    field :user_id, :integer
+    # belongs_to :user, User, foreign_key: :user_id
+    belongs_to :user, User, define_field: false
 
     timestamps()
   end
