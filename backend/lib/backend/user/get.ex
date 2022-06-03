@@ -4,6 +4,8 @@ defmodule Backend.User.Get do
 
   import Ecto.Query
 
+  def by_id(user_id), do: Repo.get(User, user_id)
+
   def by_email(email) do
     query = from u in User, where: u.email == ^email
 
