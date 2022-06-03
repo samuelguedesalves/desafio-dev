@@ -2,8 +2,8 @@ defmodule Backend.Cnab.CreateTest do
   use ExUnit.Case
 
   alias Backend.{Cnab, User, Repo}
-  alias Backend.User.Create, as: CreateUser
   alias Backend.Cnab.Create, as: CreateCnab
+  alias Backend.User.Create, as: CreateUser
 
   import Backend.Factory
 
