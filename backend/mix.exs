@@ -46,7 +46,8 @@ defmodule Backend.MixProject do
       {:decimal, "~> 2.0"},
       {:pbkdf2_elixir, "~> 2.0"},
       {:guardian, "~> 2.0"},
-      {:credo, "~> 1.6"}
+      {:credo, "~> 1.6"},
+      {:ex_machina, "~> 2.7.0"}
     ]
   end
 
