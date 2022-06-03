@@ -10,6 +10,8 @@ defmodule BackendWeb.Router do
 
     post "/user/create", UserController, :create
     post "/user/auth", UserController, :auth
+
+    post "/cnab/upload", CnabController, :upload_file
   end
 
   # Enables LiveDashboard only for development
