@@ -1,22 +1,23 @@
 defmodule Backend.Cnab.Parse do
-  def build(filename) do
+  def call(filename, user_id) do
     filename
     |> File.stream!()
-    |> Enum.map(&parse_line(&1))
+    |> Enum.map(&parse_line(&1, user_id))
   end
 
-  defp parse_line(line) do
+  defp parse_line(line, user_id) do
     line = String.trim(line)
 
     %{
-      tipo: get_type(line),
-      data: get_date(line),
-      valor: get_amount(line),
+      type: get_type(line),
+      date: get_date(line),
+      amount: get_amount(line),
       cpf: get_cpf(line),
-      cartao: get_card(line),
-      hora: get_hour(line),
-      dono_loja: get_shop_owner(line),
-      nome_loja: get_shop_name(line)
+      card: get_card(line),
+      hour: get_hour(line),
+      shop_owner: get_shop_owner(line),
+      shop_name: get_shop_name(line),
+      user_id: user_id
     }
   end
 
