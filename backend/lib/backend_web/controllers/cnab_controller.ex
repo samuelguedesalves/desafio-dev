@@ -2,12 +2,23 @@ defmodule BackendWeb.CnabController do
   use BackendWeb, :controller
 
   alias Backend.Cnab.Create, as: CreateCnab
+  alias Backend.Cnab.Get, as: GetCnab
   alias Backend.User
   alias BackendWeb.{AuthPlug, FallbackController, Helpers.GetAssignUser, CnabView}
 
   plug AuthPlug
 
   action_fallback FallbackController
+
+  def index(conn, _params) do
+    with {:ok, %User{id: user_id}} <- GetAssignUser.call(conn),
+         items <- GetCnab.by_user_id(user_id) do
+      conn
+      |> put_status(:ok)
+      |> put_view(CnabView)
+      |> render("cnab_list.json", %{items: items})
+    end
+  end
 
   def upload_file(conn, params) do
     with {:ok, %User{id: user_id}} <- GetAssignUser.call(conn),
