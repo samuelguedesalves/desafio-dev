@@ -17,6 +17,9 @@ defmodule Backend.Cnab do
     :user_id
   ]
 
+  @except_fields [:user_id, :user, :__meta__, :__struct__]
+
+  @derive {Jason.Encoder, except: @except_fields}
   schema "cnab" do
     field :type, :string
     field :date, :date
@@ -27,7 +30,6 @@ defmodule Backend.Cnab do
     field :shop_owner, :string
     field :shop_name, :string
     field :user_id, :integer
-    # belongs_to :user, User, foreign_key: :user_id
     belongs_to :user, User, define_field: false
 
     timestamps()
