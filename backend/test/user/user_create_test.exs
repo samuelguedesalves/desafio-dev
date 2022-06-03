@@ -1,4 +1,4 @@
-defmodule Backend.UserTest do
+defmodule Backend.User.CreateTest do
   use ExUnit.Case, assync: true
 
   alias Backend.{Repo, User}
