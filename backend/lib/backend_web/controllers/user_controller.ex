@@ -1,17 +1,17 @@
 defmodule BackendWeb.UserController do
   use BackendWeb, :controller
 
-  alias Backend.{User, Guardian}
+  alias Backend.User
   alias BackendWeb.{FallbackController, UserView}
+  alias User.Auth, as: AuthUser
   alias User.Create, as: CreateUser
-  alias User.Get, as: GetUser
 
   action_fallback FallbackController
 
   def create(conn, attrs) do
     with {:ok, attrs} <- cast_params_to_create(attrs),
-         {:ok, %User{id: id} = user} <- CreateUser.call(attrs),
-         {:ok, access_token, _} <- Guardian.encode_and_sign(id, %{}, ttl: {24, :hours}) do
+         {:ok, user} <- CreateUser.call(attrs),
+         {:ok, user, access_token} <- AuthUser.call(user) do
       conn
       |> put_status(:ok)
       |> put_view(UserView)
