@@ -7,7 +7,6 @@ defmodule Backend.Cnab.Create do
     |> Enum.map(&apply_changeset(&1, user_id))
     |> cast_items()
     |> insert_items()
-    |> IO.inspect()
   end
 
   defp apply_changeset(attrs, user_id) do

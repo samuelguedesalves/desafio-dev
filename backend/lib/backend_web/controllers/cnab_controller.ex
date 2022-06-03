@@ -4,7 +4,8 @@ defmodule BackendWeb.CnabController do
   alias Backend.Cnab.Create, as: CreateCnab
   alias Backend.Cnab.Get, as: GetCnab
   alias Backend.User
-  alias BackendWeb.{AuthPlug, FallbackController, Helpers.GetAssignUser, CnabView}
+
+  alias BackendWeb.{AuthPlug, CnabView, FallbackController, Helpers.GetAssignUser}
 
   plug AuthPlug
 

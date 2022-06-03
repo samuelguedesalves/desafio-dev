@@ -1,6 +1,5 @@
 defmodule Backend.Cnab.Get do
-  alias Backend.Repo
-  alias Backend.Cnab
+  alias Backend.{Cnab, Repo}
 
   import Ecto.Query
 
