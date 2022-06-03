@@ -1,11 +1,11 @@
 defmodule Backend.Cnab.Parse do
-  def call(filename, user_id) do
+  def call(filename) do
     filename
     |> File.stream!()
-    |> Enum.map(&parse_line(&1, user_id))
+    |> Enum.map(&parse_line(&1))
   end
 
-  defp parse_line(line, user_id) do
+  defp parse_line(line) do
     line = String.trim(line)
 
     %{
@@ -16,8 +16,7 @@ defmodule Backend.Cnab.Parse do
       card: get_card(line),
       hour: get_hour(line),
       shop_owner: get_shop_owner(line),
-      shop_name: get_shop_name(line),
-      user_id: user_id
+      shop_name: get_shop_name(line)
     }
   end
 
