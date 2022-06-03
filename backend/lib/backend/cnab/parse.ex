@@ -40,22 +40,6 @@ defmodule Backend.Cnab.Parse do
     time
   end
 
-  defp get_type(line) do
-    type = String.slice(line, 0, 1)
-
-    case type do
-      "1" -> "Débito"
-      "2" -> "Boleto"
-      "3" -> "Financiamento"
-      "4" -> "Crédito"
-      "5" -> "Recebimento Empréstimo"
-      "6" -> "Vendas"
-      "7" -> "Recebimento TED"
-      "8" -> "Recebimento DOC"
-      "9" -> "Aluguel"
-    end
-  end
-
   defp get_date(line) do
     date = String.slice(line, 1, 8)
 
@@ -74,4 +58,21 @@ defmodule Backend.Cnab.Parse do
     |> Decimal.new()
     |> Decimal.to_integer()
   end
+
+  defp get_type(line) do
+    line
+    |> String.slice(0, 1)
+    |> String.to_integer()
+    |> identify_type()
+  end
+
+  defp identify_type(1), do: "Débito"
+  defp identify_type(2), do: "Boleto"
+  defp identify_type(3), do: "Financiamento"
+  defp identify_type(4), do: "Crédito"
+  defp identify_type(5), do: "Recebimento Empréstimo"
+  defp identify_type(6), do: "Vendas"
+  defp identify_type(7), do: "Recebimento TED"
+  defp identify_type(8), do: "Recebimento DOC"
+  defp identify_type(9), do: "Aluguel"
 end

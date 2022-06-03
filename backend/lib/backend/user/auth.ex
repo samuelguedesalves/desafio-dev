@@ -1,5 +1,5 @@
 defmodule Backend.User.Auth do
-  alias Backend.{User, Guardian}
+  alias Backend.{Guardian, User}
   alias User.Get, as: GetUser
 
   def call(%{email: email, password: password}) do

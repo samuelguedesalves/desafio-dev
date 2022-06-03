@@ -22,7 +22,6 @@ defmodule Backend.User do
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 6)
     |> unique_constraint(:email)
-    |> IO.inspect()
     |> hash_password()
   end
 
