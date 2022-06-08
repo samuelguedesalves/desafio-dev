@@ -14,6 +14,17 @@ config :backend, BackendWeb.Endpoint, cache_static_manifest: "priv/static/cache_
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :backend, Backend.Repo,
+  username: "postgres",
+  password: "postgres",
+  hostname: "postgres",
+  database: "backend_prod",
+  show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
+# password: System.get_env("DB_PASS", "postgres"),
+# hostname: System.get_env("DB_HOST", "backend_prod"),
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key

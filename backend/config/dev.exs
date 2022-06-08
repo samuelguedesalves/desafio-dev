@@ -4,7 +4,7 @@ import Config
 config :backend, Backend.Repo,
   username: "postgres",
   password: "postgres",
-  hostname: "localhost",
+  hostname: System.get_env("DB_HOST", "localhost"),
   database: "backend_dev",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
