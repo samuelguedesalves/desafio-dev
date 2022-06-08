@@ -10,7 +10,24 @@ Informações:
 - Postgres Database
 
 ## Executando aplicação
+Para executar a aplicação basta ter o docker instalado em sua máquina
+e usar o seguinte comando:
+
+```bash
+docker-compose up
+```
+Os container serão montados e configurados, e se tudo ocorrer bem
+vai aparecer o seguinte log em seu terminal:
+
+```bash
 ...
+web_1  | Iniciando servidor web Phoenix...
+web_1  | [info] Running BackendWeb.Endpoint with cowboy 2.9.0 at 127.0.0.1:4000 (http)
+web_1  | [info] Access BackendWeb.Endpoint at http://localhost:4000
+```
+
+Pronto, agora já é possível acessar a api através do 
+seguinte endereço: http://localhost:4000
 
 ## Rotas
 
