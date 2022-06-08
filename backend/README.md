@@ -39,7 +39,7 @@ e ter acesso as funcionalidades da api.
 
 > URL: http://localhost:4000/api/user/create
 
-```json
+```javascript
 // REQUEST
 // METHOD: POST
 
@@ -51,7 +51,7 @@ e ter acesso as funcionalidades da api.
 }
 ```
 
-```json
+```javascript
 // RESPONSE
 // BODY
 {
@@ -77,7 +77,7 @@ email e senha do usuário.
 
 > URL: http://localhost:4000/api/user/auth
 
-```json
+```javascript
 // REQUEST
 // METHOD: POST
 
@@ -89,7 +89,7 @@ email e senha do usuário.
 
 ```
 
-```json
+```javascript
 // RESPONSE
 // BODY
 {
@@ -111,18 +111,21 @@ após o envio eles serão parseados e salvos para consultas posteriores.
 
 > URL: http://localhost:4000/api/cnab/upload
 
-> :warn: O arquivo deve ser enviado utilizando a codificação `multipart/form-data`.
+> :warning: O arquivo deve ser enviado utilizando a codificação `multipart/form-data`.
 
-```json
+```javascript
 // REQUEST
 // METHOD: POST
 
 // MULTIPART FORM
 fiel_name: file
 
+// HEADER
+authorization: bearer eyJhbG...
+
 ```
 
-```json
+```javascript
 // RESPONSE
 // BODY
 [
@@ -148,12 +151,15 @@ Lista todas as transações de CNAB já processadas pelo usuário.
 
 > URL: http://localhost:4000/api/cnab/list
 
-```json
+```javascript
 // REQUEST
 // METHOD: GET
+
+// HEADER
+authorization: bearer eyJhbG...
 ```
 
-```json
+```javascript
 // RESPONSE
 // BODY
 [
