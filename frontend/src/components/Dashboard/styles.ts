@@ -21,29 +21,42 @@ export const Container = styled.div`
         font-size: 24px;
       }
 
-      button {
-        height: 40px;
-        padding: 0 12px;
+      .right-container {
+        display: flex;
+        column-gap: 20px;
 
-        font-size: 18px;
-        color: var(--light);
-        background: var(--primary);
-        border-radius: 6px;
-        border-color: transparent;
-        
-        cursor: pointer;
-
-        transition: all ease 0.2s;
-
-        &:hover {
-          background: var(--primary-dark);
+        & .user-info {
+          span {
+            display: block;
+            font-size: 18px;
+          }
         }
-
         
-        &:focus {
-          outline: solid 3px var(--primary-dark);
+        button {
+          height: 40px;
+          padding: 0 12px;
+  
+          font-size: 18px;
+          color: var(--light);
+          background: var(--primary);
+          border-radius: 6px;
+          border-color: transparent;
+          
+          cursor: pointer;
+  
+          transition: all ease 0.2s;
+  
+          &:hover {
+            background: var(--primary-dark);
+          }
+  
+          
+          &:focus {
+            outline: solid 3px var(--primary-dark);
+          }
         }
       }
+
     }
   }
 `;
