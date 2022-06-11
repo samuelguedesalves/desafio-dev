@@ -6,6 +6,11 @@ export const GlobalStyles = createGlobalStyle`
 		--dark: #222222;
 		--primary: #861388;
 		--primary-dark: #621064;
+
+		--transparent-background: rgba(238, 238, 238, 0.7);
+
+		--red-50: #FEC7C7;
+		--red-500: #FF2B2B;
 	}
 
 	* {
@@ -27,7 +32,7 @@ export const GlobalStyles = createGlobalStyle`
 		position: fixed;
 		width: 100%;
 		height: 100vh;
-		background: rgba(238, 238, 238, 0.7);
+		background: var(--transparent-background);
 
 		padding: 20px 20px;
 
