@@ -47,7 +47,8 @@ defmodule Backend.MixProject do
       {:pbkdf2_elixir, "~> 2.0"},
       {:guardian, "~> 2.0"},
       {:credo, "~> 1.6"},
-      {:ex_machina, "~> 2.7.0"}
+      {:ex_machina, "~> 2.7.0"},
+      {:cors_plug, "~> 3.0"}
     ]
   end
 
