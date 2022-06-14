@@ -1,4 +1,5 @@
 import type { User } from "../../../types/User";
+
 import React from "react";
 
 import { HeaderContainer } from "./styles";
