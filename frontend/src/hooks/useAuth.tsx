@@ -1,15 +1,9 @@
+import type { User } from "../types/User";
+
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { AxiosResponse } from "axios";
 
 import { Api } from "../service/api";
-
-type User = {
-  id: number;
-  email: string;
-  inserted_at: string;
-  name: string;
-  updated_at: string;
-};
 
 type AuthContextProps = {
   isLogged: boolean;
