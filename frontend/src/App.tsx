@@ -14,7 +14,7 @@ const App: React.FC = () => (
       <ShopsProvide>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<LoginPage />} />
+            <Route path="/*" element={<LoginPage />} />
             <Route path="/dashboard/*" element={<Dashboard />} />
           </Routes>
         </BrowserRouter>
