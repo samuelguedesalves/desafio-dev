@@ -14,6 +14,7 @@ import {
 } from "./styles";
 
 import { Api } from "../../service/api";
+import { useShops } from "../../hooks/useShops";
 
 type UploadModalProps = {
   modalIsOpen: boolean;
@@ -27,6 +28,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
   closeModal,
 }) => {
   const { token } = useAuth();
+  const { refreshShopsList } = useShops();
   const formRef = useRef<HTMLFormElement>(null);
 
   const [file, setFile] = useState<File | null>(null);
@@ -42,8 +44,6 @@ export const UploadModal: React.FC<UploadModalProps> = ({
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
-    console.log("chegou aqui...");
 
     if (file) uploadFile(file);
   }
@@ -62,6 +62,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
       .then(() => {
         setIsSending(false);
         setFile(null);
+        refreshShopsList();
         closeModal();
       })
       .catch(() => {
@@ -88,7 +89,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
       overlayClassName="modal-overlay"
     >
       <header>
-        <h2>Envio de arquivo CNAB</h2>
+        <Title>Envio de arquivo CNAB</Title>
         <button
           className="close-modal"
           onClick={() => closeModal()}
