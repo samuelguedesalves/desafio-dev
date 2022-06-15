@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { Link as ReactDomLink } from "react-router-dom";
+
 
 export const Form = styled.form`
   width: 100%;
@@ -92,4 +94,13 @@ export const SendingSpinerContainer = styled.div`
       transform: rotate(360deg);
     }
   }
+`;
+
+export const Link = styled(ReactDomLink)`
+  display: block;
+
+  margin-top: 20px;
+  
+  font-size: 18px;
+  color: var(--primary);
 `;

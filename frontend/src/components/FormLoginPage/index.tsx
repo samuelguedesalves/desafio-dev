@@ -5,7 +5,7 @@ import { FiAlertTriangle, FiRefreshCw } from "react-icons/fi";
 import { useAuth } from "../../hooks/useAuth";
 import { ErrorAlert } from "../ErrorAlert";
 
-import { Button, Form, Input, SendingSpinerContainer } from "./styles";
+import { Button, Form, Input, Link, SendingSpinerContainer } from "./styles";
 
 export const FormLoginPage = () => {
   const navigate = useNavigate();
@@ -42,37 +42,43 @@ export const FormLoginPage = () => {
   }, [isLogged, redirectToDashboard]);
 
   return (
-    <Form onSubmit={(event) => handleSubmit(event)}>
-      <Input
-        type="email"
-        placeholder="Seu email"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-      />
+    <>
+      <h1>Sign In</h1>
 
-      <Input
-        type="password"
-        placeholder="Sua senha"
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-      />
-
-      <Button type="submit">Fazer login</Button>
-
-      {errorMessage && (
-        <ErrorAlert
-          icon={<FiAlertTriangle />}
-          message={errorMessage}
-          style={{ marginTop: 20 }}
+      <Form onSubmit={(event) => handleSubmit(event)}>
+        <Input
+          type="email"
+          placeholder="Seu email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
         />
-      )}
 
-      {isSending && (
-        <SendingSpinerContainer>
-          <FiRefreshCw size={30} />
-          <span>Autenticando...</span>
-        </SendingSpinerContainer>
-      )}
-    </Form>
+        <Input
+          type="password"
+          placeholder="Sua senha"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+
+        <Button type="submit">Fazer login</Button>
+
+        {errorMessage && (
+          <ErrorAlert
+            icon={<FiAlertTriangle />}
+            message={errorMessage}
+            style={{ marginTop: 20 }}
+          />
+        )}
+
+        {isSending && (
+          <SendingSpinerContainer>
+            <FiRefreshCw size={30} />
+            <span>Autenticando...</span>
+          </SendingSpinerContainer>
+        )}
+      </Form>
+
+      <Link to={"/signup"}>Criar conta</Link>
+    </>
   );
 };
