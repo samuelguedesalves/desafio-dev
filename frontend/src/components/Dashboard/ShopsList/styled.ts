@@ -46,3 +46,10 @@ export const Container = styled.div`
     margin-top: 20px;
   }
 `;
+
+export const Span = styled.span`
+  display: block;
+  font-size: 18px;
+  text-align: center;
+  line-height: 30px;
+`;
