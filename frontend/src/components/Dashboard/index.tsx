@@ -1,8 +1,21 @@
-import { useState } from "react";
-import { UploadModal } from "../UploadModal";
-import { Container } from "./styles";
+import React, { useEffect, useState } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
-export const Dashboard = () => {
+import { Header } from "./Header";
+import { UploadModal } from "../UploadModal";
+import { ShopDetails } from "./ShopDetails";
+import { ShopsList } from "./ShopsList";
+
+import { useShops } from "../../hooks/useShops";
+import { useAuth } from "../../hooks/useAuth";
+
+import { Main } from "./styles";
+
+export const Dashboard: React.FC = () => {
+  const navigate = useNavigate();
+  const { user, isLogged } = useAuth();
+  const { isLoaded } = useShops();
+
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
 
   function openModal() {
@@ -13,28 +26,32 @@ export const Dashboard = () => {
     setModalIsOpen(false);
   }
 
+  useEffect(() => {
+    function verifyLogged() {
+      if (!isLogged) {
+        navigate("/");
+      }
+    }
+
+    verifyLogged();
+  }, [isLogged, navigate]);
+
   return (
     <>
-      <Container>
+      {isLoaded && user && (
+        <>
+          <Header user={user} openModal={openModal} />
 
-        <div className="content">
-          <header>
-            <p className="" >CNAB Parser</p>
+          <Main>
+            <Routes>
+              <Route path="/" element={<ShopsList />} />
+              <Route path={`details/:shopIndex`} element={<ShopDetails />} />
+            </Routes>
+          </Main>
+        </>
+      )}
 
-            <button
-              onClick={() => openModal()}
-            >Enviar arquivo CNAB</button>
-          </header>
-
-          <main>
-
-          </main>
-        </div>
-      </Container>
-      <UploadModal
-        modalIsOpen={modalIsOpen}
-        closeModal={closeModal}
-      />
+      <UploadModal modalIsOpen={modalIsOpen} closeModal={closeModal} />
     </>
   );
-}
+};

@@ -9,6 +9,11 @@ export const Title = styled.h2`
   color: var(--dark);
 `;
 
+export const Form = styled.form`
+  width: 100%;
+  position: relative;
+`;
+
 export const InputFileLabel = styled.label<InputFileLabelProps>`
   width: 100%;
   height: 200px;
@@ -17,7 +22,6 @@ export const InputFileLabel = styled.label<InputFileLabelProps>`
 
   background: ${ props => props.selected? '#D6B6D7' : '#ddd' };
   color: var(--dark);
-  /* color: ${props => props.selected? '#eee' : 'var(--dark)'}; */
 
   display: flex;
   flex-direction: column;
@@ -60,6 +64,10 @@ export const SendingContainer = styled.div`
   width: 100%;
   height: 100%;
 
+  position: absolute;
+  top: 0;
+  left: 0;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,6 +75,8 @@ export const SendingContainer = styled.div`
   row-gap: 20px;
 
   font-size: 20px;
+
+  background: var(--transparent-background);
 
   & svg {
     animation-name: loading;
@@ -90,6 +100,10 @@ export const ErrorRequestContainer = styled.div`
   width: 100%;
   height: 100%;
 
+  position: absolute;
+  top: 0;
+  left: 0;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -97,13 +111,12 @@ export const ErrorRequestContainer = styled.div`
   row-gap: 20px;
 
   font-size: 20px;
+  background: var(--light);
 
-  button {
+  button.try-again {
     width: 100%;
     height: 50px;
     
-    max-width: 200px;
-
     font-size: 18px;
 
     border-radius: 6px;
@@ -117,6 +130,26 @@ export const ErrorRequestContainer = styled.div`
 
     &:hover {
       background: var(--primary-dark);
+    }
+  }
+
+  button.cancel {
+    width: 100%;
+    height: 50px;
+
+    background: var(--gray-200);
+    color: var(--dark);
+    
+    border: solid 2px var(--gray-300);
+    border-radius: 6px;
+    font-size: 20px;
+    
+    cursor: pointer;
+
+    transition: ease 0.6s;
+
+    &:hover {
+      background: var(--gray-250);
     }
   }
 `;
