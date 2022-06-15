@@ -11,22 +11,47 @@ export const HeaderContainer = styled.header`
   margin-bottom: 20px;
 
   display: grid;
-  grid-template-columns: 1fr 200px 200px;
+  grid-template-columns: 1fr 300px 200px;
   align-items: center;
+  column-gap: 20px;
 
   & h1 {
     font-size: 24px;
     font-weight: 500;
   }
 
-  & .user-info span {
-    display: block;
-    font-size: 18px;
+  & .user-info {
+    display: grid;
+    grid-template-columns: 40px 1fr 50px;
+    align-items: center;
+    font-size: 30px;
+
+    & span {
+      display: block;
+      font-size: 18px;
+    }
+
+    & button {
+      height: 50px;
+      width: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      background: var(--gray-250);
+      color: var(--dark);
+      border: solid 2px transparent;
+
+      &:hover {
+        background: var(--gray-250);
+        border-color: var(--gray-300);
+      }
+    }
   }
 
   & button {
     width: 100%;
-    height: 40px;
+    height: 50px;
     
     color: var(--light);
     background: var(--primary);
