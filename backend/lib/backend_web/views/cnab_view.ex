@@ -15,6 +15,8 @@ defmodule BackendWeb.CnabView do
     end)
   end
 
+  defp handle_items(_transactions_list), do: []
+
   defp find_shop_in_acc(acc, to_query) do
     Enum.find(acc, fn %{shop_name: shop_name} ->
       shop_name == to_query
