@@ -3,6 +3,20 @@ import styled from 'styled-components';
 export const Section = styled.section`
   width: 100%;
 
+  & nav {
+    margin-bottom: 20px ;
+    & button {
+      font-size: 20px;
+      border-color: transparent;
+      background-color: transparent;
+      column-gap: 12px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
+
   & header {
     display: flex;
     justify-content: space-between;
@@ -56,4 +70,11 @@ export const Article = styled.article`
     grid-template-columns: 1fr 1fr;
     font-size: 20px;
   }
+`;
+
+export const Span = styled.span`
+  font-size: 20px;
+  font-weight: 500;
+  display: block;
+  text-align: center;
 `;

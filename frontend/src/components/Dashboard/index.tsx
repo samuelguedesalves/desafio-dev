@@ -1,26 +1,22 @@
-import type { Shop } from "../../types/Shop";
-
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 
-import { UploadModal } from "../UploadModal";
 import { Header } from "./Header";
+import { UploadModal } from "../UploadModal";
 import { ShopDetails } from "./ShopDetails";
 import { ShopsList } from "./ShopsList";
 
+import { useShops } from "../../hooks/useShops";
 import { useAuth } from "../../hooks/useAuth";
-import { Api } from "../../service/api";
 
 import { Main } from "./styles";
 
-export const Dashboard = () => {
+export const Dashboard: React.FC = () => {
   const navigate = useNavigate();
-  const { token, user } = useAuth();
+  const { user, isLogged } = useAuth();
+  const { isLoaded } = useShops();
 
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
-  const [shopItems, setShopItems] = useState<Shop[]>([]);
-
-  const [selectedShop, setSelectedShop] = useState<Shop | null>(null);
 
   function openModal() {
     setModalIsOpen(true);
@@ -30,62 +26,26 @@ export const Dashboard = () => {
     setModalIsOpen(false);
   }
 
-  function navigateToShopDetails(shop: Shop) {
-    setSelectedShop(shop);
-
-    navigate("details");
-  }
-
   useEffect(() => {
-    function verifyToken() {
-      if (!token) {
+    function verifyLogged() {
+      if (!isLogged) {
         navigate("/");
       }
     }
 
-    verifyToken();
-  }, [token, navigate]);
-
-  useEffect(() => {
-    async function fetchCnabList() {
-      await Api.get("/cnab/list", {
-        headers: {
-          Authorization: `bearer ${token}`,
-        },
-      })
-        .then((resp) => {
-          console.log(resp.data);
-          setShopItems(resp.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-
-    fetchCnabList();
-  }, [token]);
+    verifyLogged();
+  }, [isLogged, navigate]);
 
   return (
     <>
-      {user && (
+      {isLoaded && user && (
         <>
           <Header user={user} openModal={openModal} />
 
           <Main>
             <Routes>
-              <Route
-                path="/"
-                element={
-                  <ShopsList
-                    shopItems={shopItems}
-                    navigateToShopDetails={navigateToShopDetails}
-                  />
-                }
-              />
-              <Route
-                path={`details`}
-                element={<ShopDetails shopData={selectedShop as Shop} />}
-              />
+              <Route path="/" element={<ShopsList />} />
+              <Route path={`details/:shopIndex`} element={<ShopDetails />} />
             </Routes>
           </Main>
         </>

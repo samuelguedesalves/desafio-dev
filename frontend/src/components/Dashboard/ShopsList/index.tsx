@@ -1,28 +1,28 @@
-import type { Shop } from "../../../types/Shop";
-
 import React from "react";
 
 import { formatCurrency } from "../../../utils/formatCurrency";
 
 import { Container } from "./styled";
+import { useShops } from "../../../hooks/useShops";
+import { useNavigate } from "react-router-dom";
 
-type ShopsListProps = {
-  shopItems: Shop[];
-  navigateToShopDetails: (shop: Shop) => void;
-};
+export const ShopsList: React.FC = ({}) => {
+  const navigate = useNavigate();
 
-export const ShopsList: React.FC<ShopsListProps> = ({
-  shopItems,
-  navigateToShopDetails,
-}) => {
+  const { shops } = useShops();
+
+  function navigateToShopDetails(shopIndex: number) {
+    navigate(`details/${shopIndex}`);
+  }
+
   return (
     <>
-      {shopItems.map((shop, index) => (
+      {shops.map((shop, index) => (
         <Container key={index}>
           <span>{shop.shop_name}</span>
           <span>{formatCurrency(shop.amount)}</span>
 
-          <button onClick={() => navigateToShopDetails(shop)}>
+          <button onClick={() => navigateToShopDetails(index)}>
             Ver transações
           </button>
         </Container>

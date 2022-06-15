@@ -1,35 +1,58 @@
-import type { Shop } from "../../../types/Shop";
 import type { Transaction } from "../../../types/Transaction";
 
-import { useEffect } from "react";
-import { FiMinus, FiPlus } from "react-icons/fi";
+import React, { useCallback } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { FiArrowLeft, FiMinus, FiPlus } from "react-icons/fi";
 
 import { formatCpf } from "../../../utils/formatCpf";
 import { formatCurrency } from "../../../utils/formatCurrency";
 
-import { Article, Section } from "./styles";
+import { useShops } from "../../../hooks/useShops";
 
-type ShopDetailsProps = {
-  shopData: Shop;
-};
+import { Article, Section, Span } from "./styles";
 
-export const ShopDetails: React.FC<ShopDetailsProps> = ({ shopData }) => {
-  useEffect(() => {
-    console.log(shopData);
-  });
+export const ShopDetails: React.FC = () => {
+  const navigate = useNavigate();
+  const params = useParams();
+
+  const { isLoaded, shops } = useShops();
+
+  const shopIndex = useCallback(() => {
+    return parseInt(params.shopIndex as string);
+  }, [params]);
+
+  function goBack() {
+    navigate("/");
+  }
 
   return (
-    <Section>
-      <header>
-        <h3>{shopData.shop_name}</h3>
-        <p>Saldo: {formatCurrency(shopData.amount)}</p>
-      </header>
-      <main>
-        {shopData.transactions.map((transaction, index) => (
-          <TransactionItem key={index} transaction={transaction} />
-        ))}
-      </main>
-    </Section>
+    <>
+      {isLoaded ? (
+        shops[shopIndex()] ? (
+          <Section>
+            <nav>
+              <button onClick={() => goBack()}>
+                <FiArrowLeft />
+                Voltar
+              </button>
+            </nav>
+            <header>
+              <h3>{shops[shopIndex()].shop_name}</h3>
+              <p>Saldo: {formatCurrency(shops[shopIndex()].amount)}</p>
+            </header>
+            <main>
+              {shops[shopIndex()].transactions.map((transaction, index) => (
+                <TransactionItem key={index} transaction={transaction} />
+              ))}
+            </main>
+          </Section>
+        ) : (
+          <Span>Loja não encontrada</Span>
+        )
+      ) : (
+        <Span>Carregando...</Span>
+      )}
+    </>
   );
 };
 
