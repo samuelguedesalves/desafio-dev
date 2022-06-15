@@ -21,8 +21,8 @@ export const ShopDetails: React.FC = () => {
     return parseInt(params.shopIndex as string);
   }, [params]);
 
-  function goBack() {
-    navigate("/");
+  function comeBack() {
+    navigate("/dashboard");
   }
 
   return (
@@ -31,7 +31,7 @@ export const ShopDetails: React.FC = () => {
         shops[shopIndex()] ? (
           <Section>
             <nav>
-              <button onClick={() => goBack()}>
+              <button onClick={() => comeBack()}>
                 <FiArrowLeft />
                 Voltar
               </button>
