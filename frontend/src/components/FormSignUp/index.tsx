@@ -34,14 +34,12 @@ export const FormSignUp = () => {
       setIsSending(false);
       redirectToDashboard();
     } else {
-      console.log(result);
       setErrorMessage(result.message as SignUpMessageErrors);
       setIsSending(false);
     }
   }
 
   function redirectToDashboard() {
-    console.log("ta chegando aqui");
     navigate("/dashboard");
   }
 

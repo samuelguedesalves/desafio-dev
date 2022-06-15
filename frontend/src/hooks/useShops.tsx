@@ -42,7 +42,6 @@ export const ShopsProvide: React.FC<ShopsContextProvideProps> = ({
         })
         .catch((err) => {
           setIsLoaded(false);
-          console.log(err);
         });
     }
 
