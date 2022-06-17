@@ -13,7 +13,7 @@ config :backend,
 
 # Configures the endpoint
 config :backend, BackendWeb.Endpoint,
-  url: [host: "localhost"],
+  url: [host: "localhost", port: 4000],
   render_errors: [view: BackendWeb.ErrorView, accepts: ~w(json), layout: false],
   pubsub_server: Backend.PubSub,
   live_view: [signing_salt: "7vtjGX7L"]

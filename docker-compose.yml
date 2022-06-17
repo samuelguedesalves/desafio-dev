@@ -9,14 +9,26 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: backend_dev
 
-  web:
-    build: .
+  front:
+    build: ./frontend
     volumes:
       - type: bind
-        source: .
+        source: ./frontend
         target: /app
     ports:
-      - "4000:4000"
+      - 3000:3000
+    depends_on:
+      - back
+    command: yarn start
+
+  back:
+    build: ./backend
+    volumes:
+      - type: bind
+        source: ./backend
+        target: /app
+    ports:
+      - 4000:4000
     environment:
       - DB_PASS=postgres
       - DB_HOST=db
