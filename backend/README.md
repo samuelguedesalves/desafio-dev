@@ -10,24 +10,22 @@ Informações:
 - Postgres Database
 
 ## Executando aplicação
-Para executar a aplicação basta ter o docker instalado em sua máquina
-e usar o seguinte comando:
+A aplicação necessita de uma base de dados. 
+Verifique a base de dados e os parâmetros de conexão presentes
+no arquivo `{dev | test | prod}.exs`.
+
+Executando o comando abaixo a aplicação irá compilar e em 
+seguinda se tudo estiver correto ela iniciará o servidor.
 
 ```bash
-docker-compose up
-```
-Os container serão montados e configurados, e se tudo ocorrer bem
-vai aparecer o seguinte log em seu terminal:
+mix phx.server
 
-```bash
 ...
-web_1  | Iniciando servidor web Phoenix...
-web_1  | [info] Running BackendWeb.Endpoint with cowboy 2.9.0 at 127.0.0.1:4000 (http)
-web_1  | [info] Access BackendWeb.Endpoint at http://localhost:4000
+Generated backend app
+[info] Running BackendWeb.Endpoint with cowboy 2.9.0 at 127.0.0.1:4000 (http)
+[info] Access BackendWeb.Endpoint at http://localhost:4000
 ```
 
-Pronto, agora já é possível acessar a api através do 
-seguinte endereço: http://localhost:4000
 
 ## Rotas
 
@@ -35,7 +33,7 @@ seguinte endereço: http://localhost:4000
 Para criar uma conta é necessário informar o
 **nome**, **email**, e uma **senha** de 6 dígitos.
 A Partir de então vai ser possível fazer a autenticação
-e ter acesso as funcionalidades da api.
+e ter acesso às funcionalidades da api.
 
 > URL: http://localhost:4000/api/user/create
 
