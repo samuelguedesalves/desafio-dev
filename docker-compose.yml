@@ -20,10 +20,6 @@ services:
   back:
     build: 
       "./backend"
-    volumes:
-      - type: bind
-        source: ./backend
-        target: /app
     ports:
       - 4000:4000
     environment:
@@ -31,5 +27,3 @@ services:
       - DB_HOST=db
     depends_on:
       - db
-    command:
-      - ./run.sh

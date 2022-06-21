@@ -9,4 +9,10 @@ RUN mix archive.install hex phx_new 1.6.6 --force
 
 WORKDIR /app
 
+COPY . .
+
+RUN mix deps.get && mix deps.compile
+
 EXPOSE 4000
+
+CMD ["mix", "phx.server"]
