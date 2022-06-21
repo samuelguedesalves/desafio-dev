@@ -10,19 +10,16 @@ services:
       POSTGRES_DB: backend_dev
 
   front:
-    build: ./frontend
-    volumes:
-      - type: bind
-        source: ./frontend
-        target: /app
+    build: 
+      "./frontend"
     ports:
       - 3000:3000
     depends_on:
       - back
-    command: yarn start
 
   back:
-    build: ./backend
+    build: 
+      "./backend"
     volumes:
       - type: bind
         source: ./backend

@@ -38,6 +38,10 @@ ter o **docker** e **docker compose** instalado em sua máquina
 e usar o seguinte comando:
 
 ```bash
+# build
+docker-compose build
+
+# mount
 docker-compose up
 ```
 Os container serão montados e configurados, e se tudo ocorrer bem
